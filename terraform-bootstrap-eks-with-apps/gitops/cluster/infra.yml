@@ -10,6 +10,6 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: ./gitops/add-ons
+  path: ./terraform-bootstrap-eks-with-apps/gitops/add-ons
   prune: true
   validation: client

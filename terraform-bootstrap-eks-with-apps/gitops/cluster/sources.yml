@@ -8,6 +8,6 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: ./gitops/sources
+  path: ./terraform-bootstrap-eks-with-apps/gitops/sources
   prune: true
   validation: client
