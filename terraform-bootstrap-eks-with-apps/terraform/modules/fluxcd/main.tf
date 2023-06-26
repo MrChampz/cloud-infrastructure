@@ -12,47 +12,10 @@ provider "helm" {
   }
 }
 
-resource "kubernetes_namespace" "flux-system" {
+resource "kubernetes_namespace" "flux_system" {
   metadata {
     name = "flux-system"
   }
-}
-
-resource "helm_release" "flux2-sync" {
-  name       = "flux-system"
-  namespace  = var.namespace
-  repository = "https://fluxcd-community.github.io/helm-charts"
-  chart      = "flux2-sync"
-
-  set {
-    name  = "secret.create"
-    value = true
-  }
-
-  set {
-    name  = "secret.data"
-    value = jsonencode({
-      username = var.git_username
-      password = var.git_password
-    })
-  }
-
-  set {
-    name  = "gitRepository.spec.ref.branch"
-    value = var.git_branch
-  }
-
-  set {
-    name = "gitRepository.spec.url"
-    value = var.git_url
-  }
-
-  set {
-    name  = "kustomization.spec.path"
-    value = "gitops/clusters/cluster-demo"
-  }
-
-  depends_on = [helm_release.flux2, kubernetes_namespace.flux-system]
 }
 
 resource "helm_release" "flux2" {
@@ -101,5 +64,44 @@ resource "helm_release" "flux2" {
     value = var.activate_source_controller
   }
 
-  depends_on = [kubernetes_namespace.flux-system]
+  depends_on = [kubernetes_namespace.flux_system]
+}
+
+
+
+resource "helm_release" "flux2_sync" {
+  name       = "flux-system"
+  namespace  = var.namespace
+  repository = "https://fluxcd-community.github.io/helm-charts"
+  chart      = "flux2-sync"
+
+  # set {
+  #   name  = "secret.create"
+  #   value = true
+  # }
+
+  # set {
+  #   name  = "secret.data"
+  #   value = jsonencode({
+  #     username = var.git_username
+  #     password = var.git_password
+  #   })
+  # }
+
+  set {
+    name  = "gitRepository.spec.ref.branch"
+    value = var.git_branch
+  }
+
+  set {
+    name = "gitRepository.spec.url"
+    value = var.git_url
+  }
+
+  set {
+    name  = "kustomization.spec.path"
+    value = "terraform-bootstrap-eks-with-apps/gitops/cluster"
+  }
+
+  depends_on = [helm_release.flux2, kubernetes_namespace.flux_system]
 }

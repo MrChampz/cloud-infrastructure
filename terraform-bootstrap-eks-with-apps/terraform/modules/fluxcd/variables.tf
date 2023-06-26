@@ -10,7 +10,6 @@ variable "git_branch" {
 
 variable "git_username" {}
 
-
 variable "git_password" {}
 
 variable "git_url" {}

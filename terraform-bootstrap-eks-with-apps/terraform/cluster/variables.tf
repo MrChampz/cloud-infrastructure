@@ -18,8 +18,14 @@ variable "git_branch" {
   default = "main"
 }
 
-variable "git_password" {}
+variable "git_password" {
+  default = ""
+}
 
-variable "git_username" {}
+variable "git_username" {
+  default = ""
+}
 
-variable "git_url" {}
+variable "git_url" {
+  default = "https://github.com/MrChampz/cloud-infrastructure"
+}

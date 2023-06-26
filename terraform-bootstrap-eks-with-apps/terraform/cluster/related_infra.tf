@@ -139,7 +139,7 @@ module "argo_workflows_eks_role" {
 resource "random_uuid" "uuid" {}
 
 resource "aws_s3_bucket" "argo_artifacts" {
-  bucket = "${var.name}-argo-artifacts-${random_uuid.uuid.result}"
+  bucket = "tf-argo-artifacts-${random_uuid.uuid.result}"
 
   tags = {
     Blueprint = var.name

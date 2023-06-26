@@ -47,7 +47,8 @@ module "eks" {
 
   cluster_addons = {
     aws-ebs-csi-driver = {
-      most_recent = true
+      most_recent       = true
+      resolve_conflicts = "OVERWRITE"
     }
 
     coredns = {
@@ -62,13 +63,13 @@ module "eks" {
         # order to ensure pods always have the resources that they need to run. 
         resources = {
           limits = {
-            cpu    = "0.25"
+            cpu = "0.25"
             # We are targetting the smallest Task size of 512Mb, so we subtract 256Mb from the
             # request/limit to ensure we can fit within that task
             memory = "256M"
           }
           requests = {
-            cpu    = "0.25"
+            cpu = "0.25"
             # We are targetting the smallest Task size of 512Mb, so we subtract 256Mb from the
             # request/limit to ensure we can fit within that task
             memory = "256M"
