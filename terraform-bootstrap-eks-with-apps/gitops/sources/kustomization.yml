@@ -1,6 +1,6 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - metric-server-helm.yml
+  - metrics-server-helm.yml
   - karpenter-helm.yml
   - argo-workflows-helm.yml
