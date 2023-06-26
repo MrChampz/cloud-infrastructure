@@ -49,9 +49,9 @@ metadata:
   name: default
 spec:
   subnetSelector:
-    karpenter.sh/discovery: eks-upgrades-workshop
+      karpenter.sh/discovery: eks-upgrades-workshop
   securityGroupSelector:
-    karpenter.sh/discovery: eks-upgrades-workshop
+      karpenter.sh/discovery: eks-upgrades-workshop
   tags:
     managed-by: "karpenter"
     intent: "apps"
