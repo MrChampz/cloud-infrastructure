@@ -28,11 +28,11 @@ spec:
       create: true
       name: karpenter
       annotations:
-        eks.amazonaws.com/role-arn: KARPENTER_IRSA
+        eks.amazonaws.com/role-arn: arn:aws:iam::736425745347:role/karpenter_controller
     settings:
       aws:
         clusterName: eks-upgrades-workshop
-        clusterEndpoint: CLUSTER_ENDPOINT
-        defaultInstanceProfile: KARPENTER_INSTANCE_PROFILE
+        clusterEndpoint: https://84A21F65C6714E4391FAB3547C32C948.gr7.us-east-1.eks.amazonaws.com
+        defaultInstanceProfile: KarpenterNodeInstanceProfile-eks-upgrades-workshop
         # interruptionQueueName: eks-upgrade-demo
   install: {}
